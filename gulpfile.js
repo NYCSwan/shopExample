@@ -7,7 +7,7 @@ var app = './builds/app'; //final destination of processed files
 
 gulp.task('js', function() { //main task src through broswerify, transforming them with reactify plugin from jsx => js
 	return gulp.src(src + '/js/app.js')
-		.pip(browserify({
+		.pipe(browserify({
 			transform: 'reactify',
 			debug: true
 		}))
@@ -26,9 +26,9 @@ gulp.task('css', function(){
 })
 
 gulp.task('watch', function(){ // looks for changes in any of the included folders and reruns tasks so things are processed correctly
-	gulp.watch(src + '/js/**/*.js', ['js']);
+	gulp.watch(src + '/js/**/*', ['js']);
 	gulp.watch(app + '/css/**/*.css', ['css']);
-	gulp.watch(app + '/**/*.html', ['html']);
+	gulp.watch([app + '/**/*.html'], ['html']);
 
 });
 

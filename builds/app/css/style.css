@@ -32,7 +32,7 @@ header .navbar-default {
 /**  Navbar Brand **/
 
 header .navbar-brand {
-    background: url(../images/wisdompetlogo.svg);
+    /*background: url(../images/dog-at-vet.jpg);*/
     background-repeat: no-repeat;
     background-position: 15px 0;
 }
@@ -43,6 +43,7 @@ header .navbar-brand h1 {
     font-size: 1.1em;
     font-weight: 400;
     padding-left: 70px;
+    text-align: center;
 }
 
 .main {
@@ -144,4 +145,8 @@ footer .navbar-nav>li a {
 
 .item-list .apt-notes {
 
+}
+#header-img {
+    max-height: 200px;
+    max-width: 200px;
 }

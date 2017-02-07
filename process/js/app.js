@@ -12,8 +12,8 @@ var MainInterface = React.createClass({
             aptBodyVisible: false,
             orderBy: 'petName',
             orderDir: 'asc',
-            myAppointments: [],
-            queryText: ''
+            queryText: '',
+            myAppointments: []
         } //return
     }, //getInitialState
 
@@ -52,10 +52,18 @@ var MainInterface = React.createClass({
             myAppointments: tempApts
         }); //setState
     }, //addItem
+
+    reOrder: function(orderBy, orderDir) {
+        this.setState({
+            orderBy: orderBy,
+            orderDir: orderDir
+        });
+    },
+
     aptSearch: function(q) {
         this.setState({
             queryText: q
-        })
+        });
     },
 
     render: function() {
@@ -66,14 +74,15 @@ var MainInterface = React.createClass({
         var queryText = this.state.queryText;
 
         myAppointments.forEach(function(item){
-            if({item.petName.toLowerCase().indexOf(queryText) != -1} ||
-            {item.ownerName.toLowerCase().indexOf(queryText) != -1} ||
-            {item.aptDate.toLowerCase().indexOf(queryText) != -1} ||
-            {item.aptNotes.toLowerCase().indexOf(queryText) != -1}
+            if(
+                (item.petName.toLowerCase().indexOf(queryText) != -1 )||
+                (item.ownerName.toLowerCase().indexOf(queryText) != -1 )||
+                (item.aptDate.toLowerCase().indexOf(queryText) != -1 )||
+                (item.aptNotes.toLowerCase().indexOf(queryText) != -1 )
             ) {
                 filteredApts.push(item);
             }
-        },
+        });
         
         filteredApts = _.orderBy(filteredApts, function(item) {
             return item[orderBy].toLowerCase();
@@ -81,12 +90,14 @@ var MainInterface = React.createClass({
 
         filteredApts = filteredApts.map(function(item, index) {
             return(
-                <AptList key = { index }
+                <AptList 
+                    key = { index }
                     singleItem = { item }
                     whichItem = { item }
                     onDelete = { this.deleteMessage } />
             ) //return
         }.bind(this)); //filteredApts.map
+        
         return (
             <div className="interface">
                 <AddAppointment
@@ -96,8 +107,9 @@ var MainInterface = React.createClass({
                 />
                 <SearchAppointments
                     orderBy = { this.state.orderBy }
-                     orderDir = { this.state.orderDir }
-                     onSearch = {this.searchApts}
+                    orderDir = { this.state.orderDir }
+                    onReOrder = { this.reOrder }
+                    onSearch = {this.aptSearch }
                 />
                 <ul className="item-list media-list">{filteredApts}</ul>
             </div>
