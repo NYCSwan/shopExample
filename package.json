@@ -9,10 +9,10 @@
   "devDependencies": {
   		"gulp": "^3.8.8",
         "gulp-browserify": "^0.5.1",
-        "gulp-react": "^3.1.0", //gives brserify abilty to translate react code
+        "gulp-react": "^3.1.0",
         "gulp-webserver": "^0.8.8",
         "jshint-stylish": "^1.0.0",
-        "lodash": "^4.13.1", //lets you do array sorting fn
+        "lodash": "^4.13.1",
         "react": "^15.1.0",
         "react-dom": "^15.1.0",
         "reactify": "^1.1.1"
